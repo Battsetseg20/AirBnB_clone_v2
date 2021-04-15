@@ -31,7 +31,10 @@ sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -hR ubuntu:ubuntu /data/
 
 #Update the Nginx configuration to serve the content of /data/web_static/current/ to hbnb_static
-sudo sed -i '7i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
-
+#sudo sed -i '7i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
+if [[ $(grep -c "location \/hbnb_static\/" /etc/nginx/sites-enabled/default) -eq 0 ]]
+then
+        sed -i "s/^\}$/\tlocation \/hbnb_static\/ \{\n\t\talias \/data\/web_static\/current\/\;\n\t\}\n\}/" /etc/nginx/sites-enabled/default
+fi
 
 sudo service nginx start
