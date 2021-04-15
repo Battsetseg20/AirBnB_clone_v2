@@ -15,7 +15,13 @@ sudo mkdir -p /data/web_static/shared/
 sudo mkdir /data/web_static/releases/test
 
 #Create a fake HTML file /data/web_static/releases/test/index.html w/ simple content
-echo "Holberton School" | sudo tee  /data/web_static/releases/test/index.html
+echo "<html>
+  <head>
+  </head>
+  <body>
+    Holberton School
+  </body>
+</html>" | sudo tee  /data/web_static/releases/test/index.html
 
 #Create a symbolic link /data/web_static/current linked to the /data/web_static/releases/test/ folder.
 #If the symbolic link already exists, it should be deleted and recreated every time the script is ran.
