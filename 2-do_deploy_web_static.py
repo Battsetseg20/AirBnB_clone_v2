@@ -3,7 +3,7 @@
 Distributes an archive to web servers
 - Upload the archive to the /tmp/ directory of the web server
 - Uncompress the archive to the folder:
-    /data/web_static/releases/<archive filename without extension> 
+    /data/web_static/releases/<archive filename without extension>
     on the web server
 - Delete the archive from the web server
 - Delete the symbolic link /data/web_static/current from the web server
