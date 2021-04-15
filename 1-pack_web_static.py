@@ -8,6 +8,7 @@ from os.path import isdir
 from fabric.api import local
 from datetime import datetime
 
+
 def do_pack():
     """Generates .tgz archive"""
     try:
