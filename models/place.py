@@ -6,8 +6,6 @@ from models.amenity import Amenity
 from sqlalchemy import Column, String, ForeignKey, Integer, Float, Table
 from sqlalchemy.orm import relationship
 from os import getenv
-from models.amenity import Amenity
-from models.review import Review
 import models
 
 # Add an instance of SQLAlchemy Table called place_amenity
@@ -40,7 +38,7 @@ class Place(BaseModel, Base):
         # For DBStorage:
         # Class attribute reviews representing relationship with Review.
         reviews = relationship("Review", cascade="all, delete",
-                               backref="place")
+                            backref="place")
         # Class Attribute amenities representing relationship with Amenity
         # no need to backref=place_amenities:
         # the name exists on mapper 'Mapper|Amenity|amenities'
@@ -60,7 +58,6 @@ class Place(BaseModel, Base):
         longitude = 0.0
         amenity_ids = []
 
-# for Filestorage:
         @property
         def reviews(self):
             """Getter for reviews

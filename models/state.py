@@ -18,7 +18,7 @@ class State(BaseModel, Base):
         def cities(self):
             """Gets the list of City instances with state_id=State.id"""
             city_list = []
-            for city in list(models.storage.all(City)):
+            for city in list(models.storage.all('City')):
                 if city.state_id == self.id:
                     city_list.append(city)
-                    return city_list
+            return city_list
