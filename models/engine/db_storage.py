@@ -42,7 +42,7 @@ class DBStorage:
         """Returns dictionary with all objects depending
         of the class name (argument cls)"""
         if cls:
-            objs = self.__session.query(self.classes()[cls])
+            objs = self.__session.query(cls)
         else:
             objs = self.__session.query(State).all()
             objs += self.__session.query(City).all()
@@ -56,6 +56,7 @@ class DBStorage:
             k = '{}.{}'.format(type(obj).__name__, obj.id)
             dic[k] = obj
         return dic
+
 
     def new(self, obj):
         """Add the object to the current db session (self.__session)"""
@@ -79,3 +80,10 @@ class DBStorage:
         session = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session)
         self.__session = Session
+
+    def close(self):
+        """Calls remove() on private session attribute
+        OR
+        close() on the class Session
+        """
+        self.__session.close()
